@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Gallery.css';
 
 const Gallery = () => {
@@ -7,8 +8,37 @@ const Gallery = () => {
     const [isDragging, setIsDragging] = useState(false);
     const [startX, setStartX] = useState(0);
     const [scrollLeft, setScrollLeft] = useState(0);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth <= 768;
+            setIsMobile(mobile);
+            if (mobile) {
+                // Reset scroll position when switching to mobile
+                setScrollPosition(0);
+                if (trackRef.current) {
+                    trackRef.current.style.transform = 'none';
+                }
+            }
+        };
+
+        // Initial check
+        handleResize();
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
+        if (isMobile) {
+            // Remove any desktop-specific styles
+            if (trackRef.current) {
+                trackRef.current.style.transform = 'none';
+            }
+            return;
+        }
+
         const handleWheel = (e) => {
             e.preventDefault();
             if (!trackRef.current) return;
@@ -58,13 +88,13 @@ const Gallery = () => {
                 window.removeEventListener('mousemove', handleMouseMove);
             }
         };
-    }, [scrollPosition, isDragging, startX, scrollLeft]);
+    }, [scrollPosition, isDragging, startX, scrollLeft, isMobile]);
 
     useEffect(() => {
-        if (trackRef.current) {
+        if (!isMobile && trackRef.current) {
             trackRef.current.style.transform = `translateX(-${scrollPosition}px)`;
         }
-    }, [scrollPosition]);
+    }, [scrollPosition, isMobile]);
 
     const menuItems = [
         { name: 'Works', path: '/works' },
@@ -107,43 +137,47 @@ const Gallery = () => {
     ];
 
     return (
-        <div className="gallery-container">
-            <div className="gallery-scroll" ref={trackRef}>
-                <div className="gallery-track">
+        <div className={`gallery-container ${isMobile ? 'gallery-container--mobile' : ''}`}>
+            <div className={`gallery-scroll ${isMobile ? 'gallery-scroll--mobile' : ''}`} ref={trackRef}>
+                <div className={`gallery-track ${isMobile ? 'gallery-track--mobile' : ''}`}>
                     {artworks.map((artwork, index) => (
                         <div
                             key={artwork.id}
-                            className="gallery__item"
+                            className={`gallery__item ${isMobile ? 'gallery__item--mobile' : ''}`}
                             style={{
                                 opacity: 0,
                                 animation: `fadeIn 0.6s ease forwards ${index * 0.1}s`
                             }}
                         >
-                            <div className="gallery__image-wrapper">
+                            <div className={`gallery__image-wrapper ${isMobile ? 'gallery__image-wrapper--mobile' : ''}`}>
                                 <img 
                                     src={artwork.image} 
                                     alt={artwork.title}
                                     className="gallery__image"
+                                    loading={isMobile ? "lazy" : "eager"}
                                 />
-                                <div className="gallery__overlay">
-                                    <h3 className="gallery__title">{artwork.title}</h3>
-                                    <p className="gallery__category">{artwork.category}</p>
+                                <div className={`gallery__overlay ${isMobile ? 'gallery__overlay--mobile' : ''}`}>
+                                    <h3 className={`gallery__title ${isMobile ? 'gallery__title--mobile' : ''}`}>
+                                        {artwork.title}
+                                    </h3>
+                                    <p className={`gallery__category ${isMobile ? 'gallery__category--mobile' : ''}`}>
+                                        {artwork.category}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     ))}
 
-                    {/* Full Page Menu Section */}
-                    <div className="gallery__menu-section">
+                    <div className={`gallery__menu-section ${isMobile ? 'gallery__menu-section--mobile' : ''}`}>
                         <div className="menu">
-                            <div className="menu__content">
+                            <div className={`menu__content ${isMobile ? 'menu__content--mobile' : ''}`}>
                                 <nav className="menu__nav">
                                     <ul className="menu__list">
                                         {menuItems.map((item) => (
                                             <li key={item.name} className="menu__item">
-                                                <a href={item.path} className="menu__link">
+                                                <Link to={item.path} className={`menu__link ${isMobile ? 'menu__link--mobile' : ''}`}>
                                                     {item.name}
-                                                </a>
+                                                </Link>
                                             </li>
                                         ))}
                                     </ul>

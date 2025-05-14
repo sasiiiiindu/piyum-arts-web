@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -13,6 +15,11 @@ const Header = () => {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Close menu when route changes
+    useEffect(() => {
+        setIsMenuOpen(false);
+    }, [location]);
 
     const menuItems = [
         { name: 'Works', path: '/works' },
@@ -25,22 +32,21 @@ const Header = () => {
         <header className={`header ${isScrolled ? 'header--scrolled' : ''}`}>
             <div className="header__container">
                 <div className="header__left">
-                    <a href="/" className="header__logo">
+                    <Link to="/" className="header__logo">
                         Piyum Arts
-                    </a>
+                    </Link>
                 </div>
 
                 <nav className={`header__nav ${isMenuOpen ? 'header__nav--open' : ''}`}>
                     <ul className="header__menu">
                         {menuItems.map((item) => (
                             <li key={item.name} className="header__menu-item">
-                                <a 
-                                    href={item.path}
+                                <Link 
+                                    to={item.path}
                                     className="header__menu-link"
-                                    onClick={() => setIsMenuOpen(false)}
                                 >
                                     {item.name}
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
