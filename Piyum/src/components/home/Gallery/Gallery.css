@@ -156,7 +156,7 @@ html, body {
 }
 
 .gallery__title {
-    font-size: 2rem;
+    font-size: 4rem;
     font-weight: 400;
     margin-bottom: var(--spacing-xs);
     font-family: var(--font-secondary);
@@ -164,14 +164,14 @@ html, body {
 }
 
 .gallery__title--mobile {
-    font-size: 1.25rem;
+    font-size: 2.25rem;
     text-align: left;
     margin-bottom: 0.25rem;
     font-weight: 400;
 }
 
 .gallery__category {
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     text-align: center;
@@ -231,7 +231,7 @@ html, body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xs);
 }
 
 .menu__item {
@@ -262,7 +262,7 @@ html, body {
 }
 
 .menu__cart-button {
-    font-size: 0.875rem;
+    font-size: 1.875rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     padding: var(--spacing-xs) 0;
@@ -365,6 +365,6 @@ html, body {
     }
 
     .menu__list {
-        gap: var(--spacing-md);
+        gap: var(--spacing-xs);
     }
 } 
