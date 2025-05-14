@@ -1,0 +1,243 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.scroll-spacer {
+    height: 300vh;
+    width: 100%;
+}
+
+.gallery-container {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--color-background);
+    overflow: hidden;
+}
+
+.gallery-scroll {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    cursor: grab;
+}
+
+.gallery-scroll:active {
+    cursor: grabbing;
+}
+
+.gallery-track {
+    display: inline-flex;
+    height: 100vh;
+    align-items: center;
+    padding: 0 5vw;
+    gap: 4vw;
+    will-change: transform;
+    transition: transform 0.1s ease-out;
+}
+
+.gallery__item {
+    flex: 0 0 60vw;
+    width: 60vw;
+    max-width: 800px;
+    position: relative;
+    white-space: normal;
+}
+
+/* Hide scrollbars for all browsers */
+.gallery-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.gallery__image-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 75%;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.gallery__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+    padding: var(--spacing-md);
+}
+
+.gallery__item:hover .gallery__overlay {
+    opacity: 1;
+}
+
+.gallery__item:hover .gallery__image {
+    transform: scale(1.05);
+}
+
+.gallery__title {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: var(--spacing-xs);
+    font-family: var(--font-secondary);
+    text-align: center;
+}
+
+.gallery__category {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: center;
+}
+
+/* Full Page Menu Styles */
+.gallery__menu-section {
+    flex: 0 0 100vw;
+    height: 100vh;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background);
+    scroll-snap-align: start;
+    white-space: normal;
+}
+
+.menu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu__content {
+    max-width: var(--container-width);
+    width: 100%;
+    padding: 0 var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--spacing-xl);
+}
+
+.menu__nav {
+    margin-bottom: auto;
+}
+
+.menu__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.menu__item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+.menu__item:nth-child(1) { animation-delay: 0.1s; }
+.menu__item:nth-child(2) { animation-delay: 0.2s; }
+.menu__item:nth-child(3) { animation-delay: 0.3s; }
+.menu__item:nth-child(4) { animation-delay: 0.4s; }
+
+.menu__link {
+    font-size: 3rem;
+    font-family: var(--font-secondary);
+    display: block;
+    padding: var(--spacing-xs) 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu__link:hover {
+    opacity: 0.7;
+}
+
+.menu__cart {
+    margin-top: auto;
+}
+
+.menu__cart-button {
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: var(--spacing-xs) 0;
+    transition: opacity 0.3s ease;
+}
+
+.menu__cart-button:hover {
+    opacity: 0.7;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery__item {
+        flex: 0 0 80vw;
+        width: 80vw;
+    }
+
+    .gallery-track {
+        padding: 0 2vw;
+    }
+
+    .gallery__title {
+        font-size: 1.5rem;
+    }
+
+    .menu__content {
+        padding: 0 var(--spacing-md);
+    }
+
+    .menu__link {
+        font-size: 2rem;
+    }
+
+    .menu__list {
+        gap: var(--spacing-md);
+    }
+} 

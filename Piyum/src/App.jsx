@@ -1,12 +1,15 @@
-import './App.css'
-import HorizontalScroll from './components/HorizontalScroll/HorizontalScroll';
+import React from 'react';
+import Gallery from './components/home/Gallery/Gallery';
+import './styles/global.css';
 
-function App() {
-  return(
-    <div className="App">
-      <HorizontalScroll/>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div className="app">
+            <main>
+                <Gallery />
+            </main>
+        </div>
+    );
+};
 
 export default App;
