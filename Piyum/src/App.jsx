@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Gallery from './components/home/Gallery/Gallery';
 import Process from './pages/Process/Process';
 import About from './pages/About/About';
@@ -11,6 +11,7 @@ const App = () => {
         <Router>
             <div className="app">
                 <Routes>
+                    <Route path="/" element={<Navigate to="/works" replace />} />
                     <Route path="/works" element={<Gallery />} />
                     <Route path="/process" element={<Process />} />
                     <Route path="/about" element={<About />} />
