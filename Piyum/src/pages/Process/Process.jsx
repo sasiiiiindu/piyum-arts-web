@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Process.css';
+import logoImage from '../../assets/logo.png';
 
 const Process = () => {
     const menuItems = [
@@ -16,7 +17,7 @@ const Process = () => {
                 <div className="process-content">
                     <nav className="process-nav">
                         <Link to="/" className="process-nav__logo">
-                            Piyum Arts
+                            <img src={logoImage} alt="Piyum Arts" className="header__logo-image" />
                         </Link>
                         <div className="process-nav__menu">
                             {menuItems.map((item) => (

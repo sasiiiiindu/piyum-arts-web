@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Contact.css';
+import logoImage from '../../assets/logo.png';
 
 const Contact = () => {
     const menuItems = [
@@ -16,7 +17,7 @@ const Contact = () => {
                 <div className="contact-content">
                     <nav className="contact-nav">
                         <Link to="/" className="contact-nav__logo">
-                            Piyum Arts
+                            <img src={logoImage} alt="Piyum Arts" className="header__logo-image" />
                         </Link>
                         <div className="contact-nav__menu">
                             {menuItems.map((item) => (
@@ -38,21 +39,21 @@ const Contact = () => {
                         <div className="contact-details">
                             <p className="contact-name">Piyum Arts</p>
                             <p className="contact-address">
-                                [Your Address Line 1]<br />
-                                [Your Address Line 2]<br />
-                                [Your City, Country]
+                                66C, Sirisanda<br />
+                                Pollawwa, Batapola<br />
+                                Galle, Sri Lanka
                             </p>
                             <p className="contact-phone">
-                                [Your Phone Number]
+                                +94 70 417 2884
                             </p>
                             <div className="contact-email">
-                                <a href="mailto:your.email@piyumarts.com" className="contact-email__link">
-                                    your.email@piyumarts.com
+                                <a href="mailto:piyumarts.insta@gmail.com" className="contact-email__link">
+                                    piyumarts.insta@gmail.com
                                 </a>
                             </div>
                             <div className="contact-social">
-                                <a href="https://instagram.com/yourhandle" className="contact-social__link" target="_blank" rel="noopener noreferrer">
-                                    @yourhandle
+                                <a href="https://instagram.com/piyumarts" className="contact-social__link" target="_blank" rel="noopener noreferrer">
+                                    @piyumarts
                                 </a>
                             </div>
                         </div>

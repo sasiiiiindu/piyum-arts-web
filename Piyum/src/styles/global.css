@@ -1,7 +1,7 @@
 :root {
-    --color-background: #fafafa;
-    --color-text: #333333;
-    --color-accent: #666666;
+    --color-background: #EDECE2;
+    --color-text: #1D1917;
+    --color-accent: #517e9c;
     --font-primary: 'Spectral', Arial, sans-serif;
     --font-secondary: 'Spectral', serif;
     --spacing-xs: 0.5rem;

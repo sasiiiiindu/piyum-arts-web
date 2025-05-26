@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './About.css';
+import logoImage from '../../assets/logo.png';
 
 const About = () => {
     const menuItems = [
@@ -16,7 +17,7 @@ const About = () => {
                 <div className="about-content">
                     <nav className="about-nav">
                         <Link to="/" className="about-nav__logo">
-                            Piyum Arts
+                            <img src={logoImage} alt="Piyum Arts" className="header__logo-image" />
                         </Link>
                         <div className="about-nav__menu">
                             {menuItems.map((item) => (
